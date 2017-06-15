@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         db.execSQL("CREATE TABLE IF NOT EXISTS eleves(id INTEGER PRIMARY KEY AUTOINCREMENT, nom VARCHAR, prenom VARCHAR);");
 
         // AJOUTER un élève
-        db.execSQL("INSERT INTO eleves VALUES('dupond', 'jean');");
+        db.execSQL("INSERT INTO eleves VALUES(NULL, 'dupond', 'jean');");
 
         // LIRE UN CHAMP PARTICULIER (où nom=dupond)
         Cursor cursor = db.query("eleves", null, " nom='dupond' ", null, null, null, null);
@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor_all = db.query("eleves", null, null, null, null, null, null);
         StringBuilder buffer = new StringBuilder();
         while (cursor_all.moveToNext()) {
-            buffer.append("nom : ").append(cursor_all.getString(0)).append("\n");
-            buffer.append("prenom : ").append(cursor_all.getString(1)).append("\n");
+            buffer.append("id : ").append(cursor_all.getString(0)).append("\n");
+            buffer.append("nom : ").append(cursor_all.getString(1)).append("\n");
+            buffer.append("prenom : ").append(cursor_all.getString(2)).append("\n");
         }
         Log.d("liste", buffer.toString());
         cursor_all.close();
-        
+
     }
 }
