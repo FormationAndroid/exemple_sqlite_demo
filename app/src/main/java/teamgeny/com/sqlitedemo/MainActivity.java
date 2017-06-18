@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         // AJOUTER un élève
         db.execSQL("INSERT INTO eleves VALUES(NULL, 'dupond', 'jean');");
 
-        // LIRE UN CHAMP PARTICULIER (où nom=dupond)
+        // LIRE UN CHAMP PARTICULIER (où nom = dupond)
         Cursor cursor = db.query("eleves", null, " nom='dupond' ", null, null, null, null);
         if (cursor.moveToFirst()) {
             Log.d("nom : ", cursor.getString(0));
