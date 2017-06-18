@@ -13,20 +13,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Création de la base de données "ecole-db"
+        // Création de la base de données "ecole_db"
         SQLiteDatabase db = openOrCreateDatabase("ecole_db", MODE_PRIVATE, null);
 
-        // creation de la TABLE si elle n'existe pas
+        // creation de la TABLE si elle n'existe pas, sinon on l'ouvre
         db.execSQL("CREATE TABLE IF NOT EXISTS eleves(id INTEGER PRIMARY KEY AUTOINCREMENT, nom VARCHAR, prenom VARCHAR);");
 
         // AJOUTER un élève
-        db.execSQL("INSERT INTO eleves VALUES(NULL, 'dupond', 'jean');");
+        db.execSQL("INSERT INTO eleves VALUES(NULL, 'Dupond', 'Jean');");
+        db.execSQL("INSERT INTO eleves VALUES(NULL, 'Lelivre', 'Jerome');");
+        db.execSQL("INSERT INTO eleves VALUES(NULL, 'Rob', 'Marc');");
+        db.execSQL("INSERT INTO eleves VALUES(NULL, 'Clan', 'Lucie');");
+        db.execSQL("INSERT INTO eleves VALUES(NULL, 'Dubois', 'Laura');");
 
         // LIRE UN CHAMP PARTICULIER (où nom = dupond)
-        Cursor cursor = db.query("eleves", null, " nom='dupond' ", null, null, null, null);
+        Cursor cursor = db.query("eleves", null, " nom='Dupond' ", null, null, null, null);
         if (cursor.moveToFirst()) {
-            Log.d("nom : ", cursor.getString(0));
-            Log.d("prenom : ", cursor.getString(1));
+            Log.d("nom : ", cursor.getString(1));
+            Log.d("prenom : ", cursor.getString(2));
         }
         cursor.close();
 
